@@ -23,7 +23,7 @@ class Book:
         # return f"Title: {self.title}, Author: {self.author}, Year: {self.year}"
         return f"{self.title} by {self.author} ({self.year})"
 
-
+# ISP principle - The interface for the library defines only the necessary methods
 class LibraryInterface(ABC):
     @abstractmethod
     def add_book(self, book: Book) -> None:
@@ -37,7 +37,7 @@ class LibraryInterface(ABC):
     def get_books(self) -> List[Book]:
         pass
 
-
+# OCP and LSP principle - The Library class can be extended without changing its implementation
 class Library(LibraryInterface):
     def __init__(self) -> None:
         self.books: List[Book] = []
@@ -51,7 +51,7 @@ class Library(LibraryInterface):
     def get_books(self) -> List[Book]:
         return self.books
 
-
+# DIP principle - The LibraryManager class depends on the LibraryInterface abstraction
 class LibraryManager:
     def __init__(self, library: LibraryInterface) -> None:
         self.library = library
